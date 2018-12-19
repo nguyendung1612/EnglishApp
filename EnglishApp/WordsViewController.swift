@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Firebase
+import AVFoundation
 
 class WordsViewController: UIViewController {
 
@@ -37,8 +38,8 @@ class WordsViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func gameAction(_ sender: Any) {
-    }
+    //@IBAction func gameAction(_ sender: Any) {
+    //}
     
     func observeWords(){
         let lessonRef = Database.database().reference().child("Lessons/\(nameLesson)")
@@ -51,8 +52,9 @@ class WordsViewController: UIViewController {
                 let dict = childSnapshot.value as? [String:Any],
                 let english = dict["English"] as? String,
                 let pronun = dict["pronunciation"] as? String,
-                    let mean = dict["mean"] as? String{
-                    let word = Word(english: english, pronun: pronun, mean: mean)
+                    let mean = dict["mean"] as? String,
+                    let audio = dict["audio"] as? String{
+                    let word = Word(english: english, pronun: pronun, mean: mean, audio: audio)
                    
                     tempWords.append(word)
                 }
@@ -62,15 +64,17 @@ class WordsViewController: UIViewController {
         })
     }
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "GameMenuSegue" {
+            let destination = segue.destination as! GameMenuViewController
+            destination.lesson = nameLesson
+        }
     }
-    */
+    
 
 }
 
@@ -86,6 +90,38 @@ extension WordsViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "wordCell", for: indexPath) as! WordsTableViewCell
         cell.set(word: words[indexPath.row])
+        cell.cellDelegate = self
+        cell.index = indexPath
         return cell
     }
 }
+
+extension WordsViewController: WordsTableViewNew{
+    func onRemind(index: Int) {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        
+        let english = words[index].english
+        
+        let userRef = Database.database().reference().child("users/\(uid)/remind/\(english)")
+        
+        let remindWord = [
+            "English" : words[index].english,
+            "pronunciation" : words[index].pronun,
+            "mean" : words[index].mean,
+            "audio" : words[index].audio
+            ] as [String: Any]
+        
+        userRef.setValue(remindWord)
+    }
+    
+    func onSpeak(index: Int) {
+        let audio = words[index].audio
+        let url = URL(string: urlStart + audio)
+        let playerItem: AVPlayerItem = AVPlayerItem(url: url!)
+        let player: AVPlayer? = AVPlayer(playerItem: playerItem)
+        player!.play()
+    }
+    
+ 
+}
+
