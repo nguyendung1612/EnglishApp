@@ -14,9 +14,9 @@ class Game3ViewController: UIViewController {
     @IBOutlet weak var lblQuestion: UILabel!
     @IBOutlet weak var lblScore: UILabel!
     
-    
-    //@IBOutlet weak var collectionview: UICollectionView!
-    
+//    
+//    @IBOutlet weak var collectionview: UICollectionView!
+//    
     var english = ["a","b","c","d","e","f","g","h"]
     
     override func viewDidLoad() {
@@ -24,7 +24,7 @@ class Game3ViewController: UIViewController {
 
         view.addVerticalGradientLayer(topColor: primaryColor, bottomColor: secondaryColor)
         
-        //collectionview.addVerticalGradientLayer(topColor: primaryColor, bottomColor: secondaryColor)
+//        collectionview.addVerticalGradientLayer(topColor: primaryColor, bottomColor: secondaryColor)
         
         // Do any additional setup after loading the view.
     }

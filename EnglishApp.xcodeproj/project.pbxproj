@@ -28,6 +28,10 @@
 		66B0783D21AF971C00AAD165 /* ClassFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B0783C21AF971B00AAD165 /* ClassFile.swift */; };
 		66EDE4FF21C0AE99003ABCCE /* RemindTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66EDE4FD21C0AE99003ABCCE /* RemindTableViewCell.swift */; };
 		66EDE50021C0AE99003ABCCE /* RemindTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66EDE4FE21C0AE99003ABCCE /* RemindTableViewCell.xib */; };
+		A471F01721CA3D8C00F0B718 /* GameMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A471F01521CA3D8B00F0B718 /* GameMenuViewController.swift */; };
+		A471F01821CA3D8C00F0B718 /* Game3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A471F01621CA3D8C00F0B718 /* Game3ViewController.swift */; };
+		A471F01A21CA3DB700F0B718 /* WordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A471F01921CA3DB700F0B718 /* WordCollectionViewCell.swift */; };
+		A471F01C21CA403E00F0B718 /* Game2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A471F01B21CA403E00F0B718 /* Game2ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +60,10 @@
 		66EDE4FD21C0AE99003ABCCE /* RemindTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindTableViewCell.swift; sourceTree = "<group>"; };
 		66EDE4FE21C0AE99003ABCCE /* RemindTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RemindTableViewCell.xib; sourceTree = "<group>"; };
 		9A4678093DA75C09E73FA18D /* Pods_EnglishApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EnglishApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A471F01521CA3D8B00F0B718 /* GameMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameMenuViewController.swift; sourceTree = "<group>"; };
+		A471F01621CA3D8C00F0B718 /* Game3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game3ViewController.swift; sourceTree = "<group>"; };
+		A471F01921CA3DB700F0B718 /* WordCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordCollectionViewCell.swift; sourceTree = "<group>"; };
+		A471F01B21CA403E00F0B718 /* Game2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game2ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,21 +99,24 @@
 		668AE51821AE3190000D4E45 /* EnglishApp */ = {
 			isa = PBXGroup;
 			children = (
-				6699AE5921B0D5E300E0FF20 /* Cells */,
 				668AE51921AE3190000D4E45 /* AppDelegate.swift */,
-				668AE51B21AE3190000D4E45 /* ViewController.swift */,
+				668AE52021AE334A000D4E45 /* Assets.xcassets */,
+				6699AE5921B0D5E300E0FF20 /* Cells */,
+				66B0783C21AF971B00AAD165 /* ClassFile.swift */,
+				A471F01B21CA403E00F0B718 /* Game2ViewController.swift */,
+				A471F01621CA3D8C00F0B718 /* Game3ViewController.swift */,
+				A471F01521CA3D8B00F0B718 /* GameMenuViewController.swift */,
+				668AE52B21AE3499000D4E45 /* GoogleService-Info.plist */,
 				668AE53121AE37E9000D4E45 /* HelperExtensions.swift */,
 				668AE53021AE37E8000D4E45 /* HomeViewController.swift */,
+				668AE52521AE3357000D4E45 /* Info.plist */,
+				668AE52221AE3351000D4E45 /* LaunchScreen.storyboard */,
 				668AE52E21AE37E7000D4E45 /* LoginViewController.swift */,
+				668AE51D21AE3191000D4E45 /* Main.storyboard */,
 				668AE52F21AE37E8000D4E45 /* MenuViewController.swift */,
 				668AE53221AE37E9000D4E45 /* RoundedWhiteButton.swift */,
 				668AE52D21AE37E7000D4E45 /* SignUpViewController.swift */,
-				668AE51D21AE3191000D4E45 /* Main.storyboard */,
-				668AE52021AE334A000D4E45 /* Assets.xcassets */,
-				668AE52221AE3351000D4E45 /* LaunchScreen.storyboard */,
-				668AE52521AE3357000D4E45 /* Info.plist */,
-				668AE52B21AE3499000D4E45 /* GoogleService-Info.plist */,
-				66B0783C21AF971B00AAD165 /* ClassFile.swift */,
+				668AE51B21AE3190000D4E45 /* ViewController.swift */,
 				6699AE5721B0D45B00E0FF20 /* WordsViewController.swift */,
 			);
 			path = EnglishApp;
@@ -114,6 +125,7 @@
 		6699AE5921B0D5E300E0FF20 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				A471F01921CA3DB700F0B718 /* WordCollectionViewCell.swift */,
 				66B0783821AF92ED00AAD165 /* LessonTableViewCell.swift */,
 				66B0783921AF92ED00AAD165 /* LessonTableViewCell.xib */,
 				6699AE5A21B0D8C700E0FF20 /* WordsTableViewCell.swift */,
@@ -276,9 +288,13 @@
 				6699AE5821B0D45B00E0FF20 /* WordsViewController.swift in Sources */,
 				668AE53721AE37E9000D4E45 /* HelperExtensions.swift in Sources */,
 				668AE53821AE37E9000D4E45 /* RoundedWhiteButton.swift in Sources */,
+				A471F01821CA3D8C00F0B718 /* Game3ViewController.swift in Sources */,
 				668AE53421AE37E9000D4E45 /* LoginViewController.swift in Sources */,
 				668AE53521AE37E9000D4E45 /* MenuViewController.swift in Sources */,
+				A471F01C21CA403E00F0B718 /* Game2ViewController.swift in Sources */,
+				A471F01721CA3D8C00F0B718 /* GameMenuViewController.swift in Sources */,
 				66EDE4FF21C0AE99003ABCCE /* RemindTableViewCell.swift in Sources */,
+				A471F01A21CA3DB700F0B718 /* WordCollectionViewCell.swift in Sources */,
 				668AE53321AE37E9000D4E45 /* SignUpViewController.swift in Sources */,
 				66B0783A21AF92ED00AAD165 /* LessonTableViewCell.swift in Sources */,
 				668AE51C21AE3190000D4E45 /* ViewController.swift in Sources */,
