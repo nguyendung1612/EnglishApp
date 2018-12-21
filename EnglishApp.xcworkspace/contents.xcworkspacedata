@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Game1ViewController.swift">
+   </FileRef>
+   <FileRef
       location = "group:EnglishApp.xcodeproj">
    </FileRef>
    <FileRef
