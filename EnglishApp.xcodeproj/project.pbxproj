@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		40593AA921CD253E002A8CD3 /* Game1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40593AA821CD253E002A8CD3 /* Game1ViewController.swift */; };
 		44C95392B51DE45DD91CE4E3 /* Pods_EnglishApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4678093DA75C09E73FA18D /* Pods_EnglishApp.framework */; };
 		668AE51A21AE3190000D4E45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668AE51921AE3190000D4E45 /* AppDelegate.swift */; };
 		668AE51C21AE3190000D4E45 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668AE51B21AE3190000D4E45 /* ViewController.swift */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		350BFEEDDDFCAD7F4C2C5086 /* Pods-EnglishApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnglishApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-EnglishApp/Pods-EnglishApp.release.xcconfig"; sourceTree = "<group>"; };
+		40593AA821CD253E002A8CD3 /* Game1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game1ViewController.swift; sourceTree = "<group>"; };
 		6498B46B8BED59561B4D54F6 /* Pods-EnglishApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnglishApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EnglishApp/Pods-EnglishApp.debug.xcconfig"; sourceTree = "<group>"; };
 		668AE51621AE3190000D4E45 /* EnglishApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnglishApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		668AE51921AE3190000D4E45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				668AE52021AE334A000D4E45 /* Assets.xcassets */,
 				6699AE5921B0D5E300E0FF20 /* Cells */,
 				66B0783C21AF971B00AAD165 /* ClassFile.swift */,
+				40593AA821CD253E002A8CD3 /* Game1ViewController.swift */,
 				A471F01B21CA403E00F0B718 /* Game2ViewController.swift */,
 				A471F01621CA3D8C00F0B718 /* Game3ViewController.swift */,
 				A471F01521CA3D8B00F0B718 /* GameMenuViewController.swift */,
@@ -299,6 +302,7 @@
 				66B0783A21AF92ED00AAD165 /* LessonTableViewCell.swift in Sources */,
 				668AE51C21AE3190000D4E45 /* ViewController.swift in Sources */,
 				668AE51A21AE3190000D4E45 /* AppDelegate.swift in Sources */,
+				40593AA921CD253E002A8CD3 /* Game1ViewController.swift in Sources */,
 				668AE53621AE37E9000D4E45 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
