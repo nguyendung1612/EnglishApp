@@ -145,6 +145,7 @@ extension Game2ViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if time > 0 {
+            timer.invalidate()
             if keyWord[indexPath.row] == hideWordList {
                 numberQuestion = numberQuestion + 1
                 score = score + 10

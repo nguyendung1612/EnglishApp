@@ -13,7 +13,8 @@ class Game1ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        view.addVerticalGradientLayer(topColor: primaryColor, bottomColor: secondaryColor)
+        run()
     }
     
 
@@ -41,6 +42,7 @@ class Game1ViewController: UIViewController {
     
     @IBAction func btnAnswer(_ sender: Any) {
         count += 1
+        stopTimeDown()
         if (result == (sender as AnyObject).tag){
             score += 10
         }
@@ -51,11 +53,8 @@ class Game1ViewController: UIViewController {
     }
     
     func run(){
-        if count < 6{
-            second = 10
-            stopTimeDown()
+        if count <= 10{
             startTimeDown()
-            
             displayQuestion()
         }
         else{
@@ -155,6 +154,7 @@ class Game1ViewController: UIViewController {
     }
     
     func startTimeDown(){
+        second = 10
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.counter), userInfo: nil, repeats: true)
     }
     
@@ -164,11 +164,10 @@ class Game1ViewController: UIViewController {
     
     @objc func counter(){
         second -= 1
-        lblTime.text = "\(second)s"
-        
+        lblTime.text = String(second)
         if (second == 0){
-            count += 1
             stopTimeDown()
+            count += 1
             run()
         }
     }

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Firebase
 import AVFoundation
-
+var gameWords = [Word]()
 class WordsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
@@ -59,6 +59,7 @@ class WordsViewController: UIViewController {
                 }
             }
             self.words = tempWords
+            gameWords = tempWords
             self.tableView.reloadData()
         })
     }
