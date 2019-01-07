@@ -44,7 +44,9 @@ class GameMenuViewController: UIViewController {
         if (segue.identifier == "Game2Segue"){
             let lessionCurrent = segue.destination as! Game2ViewController
             lessionCurrent.lessionName = lesson
-            
+        }
+        if (segue.identifier == "Game3Segue"){
+            let lessionCurrent = segue.destination as! Game3ViewController
         }
     }
     

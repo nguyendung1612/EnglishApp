@@ -23,10 +23,11 @@ class Word{
     var english: String = ""
     var pronun: String = ""
     var mean: String = ""
-    
-    init(english: String, pronun: String, mean: String) {
+    var audio: String = ""
+    init(english: String, pronun: String, mean: String, audio: String) {
         self.english = english
         self.pronun = pronun
         self.mean = mean
+        self.audio = audio
     }
 }
