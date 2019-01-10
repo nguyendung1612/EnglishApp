@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import AVFoundation
 
 class Game1ViewController: UIViewController {
 
@@ -40,6 +41,7 @@ class Game1ViewController: UIViewController {
         
     }
     
+    var player:AVPlayer!
     var lessionName: String = ""
     var gameWords = [Word]()
     var count = 1
@@ -68,6 +70,7 @@ class Game1ViewController: UIViewController {
         count += 1
         stopTimeDown()
         if (result == (sender as AnyObject).tag){
+            playAudio(str: gameWords[number].english)	
             score += 10
         }
         else{
@@ -205,6 +208,34 @@ class Game1ViewController: UIViewController {
         }
     }
     
-
+    func playAudio(str: String){
+        player = AVPlayer(url: convertStringToURL(str: str))
+        player.play()
+    }
+    
+    //Chuyen tu vung sang url
+    func convertStringToURL(str : String)->URL{
+        var urlStr = "https://www.oxfordlearnersdictionaries.com/media/english/us_pron/"
+        switch str.count {
+        case 1:
+            urlStr = "\(urlStr)\(str)/\(str)__/\(str)__us/\(str)__us_1.mp3"
+            break
+        case 2:
+            urlStr = "\(urlStr)\(str.prefix(1))/\(str)_/\(str)__u/\(str)__us_1.mp3"
+            break
+        case 3:
+            urlStr = "\(urlStr)\(str.prefix(1))/\(str)/\(str)__/\(str)__us_1.mp3"
+            break
+        case 4:
+            urlStr = "\(urlStr)\(str.prefix(1))/\(str.prefix(3))/\(str)_/\(str)__us_1.mp3"
+            break
+        default:
+            urlStr = "\(urlStr)\(str.prefix(1))/\(str.prefix(3))/\(str.prefix(5))/\(str)__us_1.mp3"
+            break
+            
+        }
+        return URL(string: urlStr)!
+        
+    }
 
 }
