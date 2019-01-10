@@ -11,8 +11,6 @@ import UIKit
 class GameMenuViewController: UIViewController {
 
     @IBOutlet weak var lblLesson: UILabel!
-    @IBOutlet weak var lblUser: UILabel!
-    @IBOutlet weak var lblScore: UILabel!
     @IBOutlet weak var btnGame1: UIButton!
     @IBOutlet weak var btnGame2: UIButton!
     @IBOutlet weak var btnGame3: UIButton!

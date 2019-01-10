@@ -265,7 +265,7 @@ extension Game2ViewController: UICollectionViewDelegate, UICollectionViewDataSou
         }
         
     }
-    
+    //phat am tu truyen vao
     func playAudio(str: String){
         let firstString = str.split(separator: " ")
         player = AVPlayer(url: convertStringToURL(str: String(firstString[0])))
