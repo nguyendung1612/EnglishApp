@@ -122,7 +122,7 @@ class Game2ViewController: UIViewController {
         view.addVerticalGradientLayer(topColor: primaryColor, bottomColor: secondaryColor)
         lblHeart.text = String(heart)
         lblRes.isHidden = true
-       
+        print("lession name: \(lessionName)")
         observeWords()
     }
     
@@ -137,7 +137,7 @@ class Game2ViewController: UIViewController {
                     let english = dict["English"] as? String,
                     let pronun = dict["pronunciation"] as? String,
                     let mean = dict["mean"] as? String{
-                    let word = Word(english: english, pronun: pronun, mean: mean, audio: "temp")
+                    let word = Word(english: english, pronun: pronun, mean: mean)
                     
                     self.tempWords.append(word)
                 }

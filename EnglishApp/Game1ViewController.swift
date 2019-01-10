@@ -20,6 +20,7 @@ class Game1ViewController: UIViewController {
     
     func observeWords(){
         let lessonRef = Database.database().reference().child("Lessons/\(lessionName)")
+        
         lessonRef.observe(.value, with: { snapshot in
             
             for child in snapshot.children {
@@ -28,7 +29,7 @@ class Game1ViewController: UIViewController {
                     let english = dict["English"] as? String,
                     let pronun = dict["pronunciation"] as? String,
                     let mean = dict["mean"] as? String{
-                    let word = Word(english: english, pronun: pronun, mean: mean, audio: "temp")
+                    let word = Word(english: english, pronun: pronun, mean: mean)
                     
                     self.gameWords.append(word)
                 }
@@ -105,6 +106,7 @@ class Game1ViewController: UIViewController {
         result = Int.random(in: 0 ... 3)
         lblCount.text = "\(count)/10"
         lblScore.text = "Score: \(score)/100"
+        print("number \(number), \(gameWords.count), name \(lessionName)")
         lblQuestion.text = gameWords[number].mean
         var num = 0
         isAnswer.removeAll()

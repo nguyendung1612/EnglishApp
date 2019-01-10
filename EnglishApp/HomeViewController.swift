@@ -98,7 +98,7 @@ class HomeViewController:UIViewController {
                     let english = dict["English"] as? String,
                     let pronun = dict["pronunciation"] as? String,
                     let mean = dict["mean"] as? String{
-                    let word = Word(english: english, pronun: pronun, mean: mean, audio: "temp")
+                    let word = Word(english: english, pronun: pronun, mean: mean)
                     
                     tempWords.append(word)
                 }

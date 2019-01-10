@@ -53,9 +53,8 @@ class WordsViewController: UIViewController {
                     let dict = childSnapshot.value as? [String:Any],
                     let english = dict["English"] as? String,
                     let pronun = dict["pronunciation"] as? String,
-                    let mean = dict["mean"] as? String,
-                    let audio = dict["audio"] as? String{
-                    let word = Word(english: english, pronun: pronun, mean: mean, audio: audio)
+                    let mean = dict["mean"] as? String{
+                    let word = Word(english: english, pronun: pronun, mean: mean)
                     
                     tempWords.append(word)
                 }
