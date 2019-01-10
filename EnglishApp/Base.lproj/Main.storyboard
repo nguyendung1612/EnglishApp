@@ -608,7 +608,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                 <state key="normal" image="snail"/>
                                                 <connections>
-                                                    <segue destination="bvr-wN-8rJ" kind="show" id="e5r-bA-eAi"/>
+                                                    <segue destination="bvr-wN-8rJ" kind="show" identifier="Game1Segue" id="e5r-bA-eAi"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qm8-7G-tF1">
@@ -1383,7 +1383,6 @@ CQ
         <image name="remindon" width="24" height="24"/>
         <image name="snail" width="100" height="100"/>
         <image name="speak" width="24" height="24"/>
-        <image name="star" width="24" height="24"/>
         <image name="toeicgames" width="180" height="180"/>
         <image name="tree" width="50" height="50"/>
         <image name="wrong" width="480" height="480"/>

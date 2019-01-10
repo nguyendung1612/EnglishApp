@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class Game1ViewController: UIViewController {
 
@@ -14,10 +15,32 @@ class Game1ViewController: UIViewController {
         super.viewDidLoad()
 
         view.addVerticalGradientLayer(topColor: primaryColor, bottomColor: secondaryColor)
-        run()
+        observeWords()
     }
     
-
+    func observeWords(){
+        let lessonRef = Database.database().reference().child("Lessons/\(lessionName)")
+        lessonRef.observe(.value, with: { snapshot in
+            
+            for child in snapshot.children {
+                if let childSnapshot = child as? DataSnapshot,
+                    let dict = childSnapshot.value as? [String:Any],
+                    let english = dict["English"] as? String,
+                    let pronun = dict["pronunciation"] as? String,
+                    let mean = dict["mean"] as? String{
+                    let word = Word(english: english, pronun: pronun, mean: mean, audio: "temp")
+                    
+                    self.gameWords.append(word)
+                }
+            }
+            self.run()
+            
+        })
+        
+    }
+    
+    var lessionName: String = ""
+    var gameWords = [Word]()
     var count = 1
     var score = 0
     var number = 0

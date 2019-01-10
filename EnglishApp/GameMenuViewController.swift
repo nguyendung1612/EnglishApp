@@ -41,6 +41,10 @@ class GameMenuViewController: UIViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "Game1Segue"){
+            let lessionCurrent = segue.destination as! Game1ViewController
+            lessionCurrent.lessionName = lesson
+        }
         if (segue.identifier == "Game2Segue"){
             let lessionCurrent = segue.destination as! Game2ViewController
             lessionCurrent.lessionName = lesson
