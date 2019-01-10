@@ -17,6 +17,7 @@ class Game3ViewController: UIViewController {
     @IBOutlet weak var lblScore: UILabel!
     @IBOutlet weak var lblAnswer: UILabel!
     @IBOutlet weak var lblWrong: UILabel!
+    @IBOutlet weak var lblRes: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     
     
@@ -38,7 +39,8 @@ class Game3ViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        lblQuestion.text = "1"
+        lblRes.isHidden = true
         observeWords()
         view.addVerticalGradientLayer(topColor: primaryColor, bottomColor: secondaryColor)
         ques = Int.random(in: 0 ... 11)
@@ -66,7 +68,6 @@ class Game3ViewController: UIViewController {
     func randomQues(){
         ques = Int.random(in: 0 ... 11)
         english.removeAll()
-        playAudio(str: wordgame[ques].english)
         var pos = 0
         for char in wordgame[ques].english{
             pos = Int.random(in: 0...english.count)
@@ -76,15 +77,33 @@ class Game3ViewController: UIViewController {
         lblEnglish.text = ""
         lblAnswer.text = ""
         collectionView.reloadData()
+        playAudio(str: wordgame[ques].english)
+
     }
     
     
     func nextQues(){
-        countQues += 1
-        temp.removeAll()
-        ans.removeAll()
+        if countQues == 10 {
+            let alert:UIAlertController = UIAlertController(title: "Congratulation!", message: "You gain \(score) points", preferredStyle: UIAlertController.Style.alert)
+            
+          
+            
+            let btnClose: UIAlertAction = UIAlertAction(title: "Close", style: UIAlertAction.Style.cancel){(btn) in
+                self.dismiss(animated: true, completion: nil)
+            }
+            alert.addAction(btnClose)
+            
+            present(alert, animated: true, completion: nil)
+        }
+        else {
+            countQues += 1
+            lblQuestion.text = String(countQues)
+            temp.removeAll()
+            ans.removeAll()
+            
+            randomQues()
+        }
         
-        randomQues()
     }
     
     func wrongAns(){
@@ -102,12 +121,7 @@ class Game3ViewController: UIViewController {
         }
         else{
             lblScore.text = String(score)
-            let alert:UIAlertController = UIAlertController(title: "You gain \(score) points", message: "End of Quiz. Do you want to start over?", preferredStyle: UIAlertController.Style.alert)
-            
-            let btnRestart:UIAlertAction = UIAlertAction(title: "Restart", style: UIAlertAction.Style.destructive) { (btn) in
-                self.restartGame()
-            }
-            alert.addAction(btnRestart)
+            let alert:UIAlertController = UIAlertController(title: "Congratulation!", message: "You gain \(score) points", preferredStyle: UIAlertController.Style.alert)
             
             let btnClose: UIAlertAction = UIAlertAction(title: "Close", style: UIAlertAction.Style.cancel){(btn) in
                 self.dismiss(animated: true, completion: nil)
@@ -120,7 +134,12 @@ class Game3ViewController: UIViewController {
     
     func restartGame(){
         countQues = 1
+        lblQuestion.text = String(countQues)
         score = 0
+        lblScore.text = String(score)
+        temp.removeAll()
+        ans.removeAll()
+        english.removeAll()
         nextQues()
     }
     
@@ -230,10 +249,17 @@ class Game3ViewController: UIViewController {
     @IBAction func btnKiemTra(_ sender: UIButton) {
         if modeBtnKiemTra == 0 {
             print("ans: \(ans), word: \(wordgame[ques].english), mean: \(wordgame[ques].mean)")
+            lblRes.isHidden = false
+
             if ans == wordgame[ques].english { // tra loi dung
                 lblAnswer.text = wordgame[ques].mean
                 score += 10
                 lblScore.text = String(score)
+                lblRes.text = "Exactly!"
+            }
+            else{
+                lblRes.text = "Wrong!"
+
             }
             sender.setTitle("Next", for: .normal)
             modeBtnKiemTra = 1
@@ -242,6 +268,7 @@ class Game3ViewController: UIViewController {
             nextQues()
             modeBtnKiemTra = 0
             sender.setTitle("Kiểm tra", for: .normal)
+            lblRes.isHidden = true
         }
     }
 }
