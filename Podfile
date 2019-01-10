@@ -8,5 +8,9 @@ target 'EnglishApp' do
   # Pods for EnglishApp
 pod 'Firebase'
   pod 'Firebase/Auth'
+<<<<<<< HEAD
   pod 'Firebase/Database'   
+=======
+  pod 'Firebase/Database'
+>>>>>>> 58e3c83d3ae4f7c913dea16c58a54bf1dc40cece
 end
