@@ -32,7 +32,6 @@ class WordsViewController: UIViewController {
         tableView.tableFooterView = UIView()
         
         observeWords()
-        wordgame = words
     }
     
     @IBAction func handleBackButton(_ sender: Any) {
