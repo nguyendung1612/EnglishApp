@@ -811,6 +811,9 @@ CQ
                                     <constraint firstAttribute="height" constant="24" id="Aym-Ve-5aD"/>
                                 </constraints>
                                 <state key="normal" image="speak"/>
+                                <connections>
+                                    <action selector="btnPlayAudio:" destination="qs4-bD-Yc5" eventType="touchUpInside" id="AEK-uK-NZ0"/>
+                                </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="e0O-nQ-hhl">
                                 <rect key="frame" x="16" y="304" width="343" height="169"/>
