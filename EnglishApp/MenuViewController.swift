@@ -36,6 +36,21 @@ class MenuViewController: UIViewController {
         super.viewDidAppear(animated)
         
         if let user = Auth.auth().currentUser {
+            let uid = user.uid
+            let userRef = Database.database().reference().child("users/\(uid)")
+            
+            userRef.observe(.value, with: { snapshot in
+                for child in snapshot.children {
+                    if let childSnapshot = child as? DataSnapshot,
+                        let dict = childSnapshot.value as? [String:Any],
+                        let username = dict["username"] as? String,
+                        let score = dict["score"] as? Int{
+                        //Username = username
+                        //Score = score
+                    }
+                }
+            })
+            
             self.performSegue(withIdentifier: "toHomeScreen", sender: self)
         }
     }
