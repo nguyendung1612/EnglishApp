@@ -89,6 +89,7 @@ class Game2ViewController: UIViewController {
             heart = heart - 1
             lblHeart.text = String(heart)
             checkHeart()
+            loadQuestion()
         }
     }
     func checkHeart(){
