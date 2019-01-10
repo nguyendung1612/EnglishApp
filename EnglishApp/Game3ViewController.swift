@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import AVFoundation
 
 class Game3ViewController: UIViewController {
     
@@ -17,6 +19,9 @@ class Game3ViewController: UIViewController {
     @IBOutlet weak var lblWrong: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var lessionName: String = ""
+    var wordgame = [Word]()
+    var player:AVPlayer!
     var english = [String]()
     var temp = [String]()
     var ans : String = ""
@@ -29,18 +34,36 @@ class Game3ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        observeWords()
         view.addVerticalGradientLayer(topColor: primaryColor, bottomColor: secondaryColor)
         ques = Int.random(in: 0 ... 11)
-        randomQues()
         // Do any additional setup after loading the view.
     }
-    
+    func observeWords(){
+        let lessonRef = Database.database().reference().child("Lessons/\(lessionName)")
+        lessonRef.observe(.value, with: { snapshot in
+            
+            for child in snapshot.children {
+                if let childSnapshot = child as? DataSnapshot,
+                    let dict = childSnapshot.value as? [String:Any],
+                    let english = dict["English"] as? String,
+                    let pronun = dict["pronunciation"] as? String,
+                    let mean = dict["mean"] as? String{
+                    let word = Word(english: english, pronun: pronun, mean: mean)
+                    
+                    self.wordgame.append(word)
+                }
+            }
+            self.randomQues()
+        })
+        
+    }
     func randomQues(){
         var i = 0
+        print(wordgame.count)
+        playAudio(str: wordgame[ques].english)
         for char in wordgame[ques].english{
-            english[i] = String(char)
-            i = i + 1
+            english.append(String(char))
         }
         temp = english
     }
@@ -161,6 +184,36 @@ class Game3ViewController: UIViewController {
         }
     }
     
+    func playAudio(str: String){
+        let firstString = str.split(separator: " ")
+        player = AVPlayer(url: convertStringToURL(str: String(firstString[0])))
+        player.play()
+    }
+    
+    //Chuyen tu vung sang url
+    func convertStringToURL(str : String)->URL{
+        var urlStr = "https://www.oxfordlearnersdictionaries.com/media/english/us_pron/"
+        switch str.count {
+        case 1:
+            urlStr = "\(urlStr)\(str)/\(str)__/\(str)__us/\(str)__us_1.mp3"
+            break
+        case 2:
+            urlStr = "\(urlStr)\(str.prefix(1))/\(str)_/\(str)__u/\(str)__us_1.mp3"
+            break
+        case 3:
+            urlStr = "\(urlStr)\(str.prefix(1))/\(str)/\(str)__/\(str)__us_1.mp3"
+            break
+        case 4:
+            urlStr = "\(urlStr)\(str.prefix(1))/\(str.prefix(3))/\(str)_/\(str)__us_1.mp3"
+            break
+        default:
+            urlStr = "\(urlStr)\(str.prefix(1))/\(str.prefix(3))/\(str.prefix(5))/\(str)__us_1.mp3"
+            break
+            
+        }
+        return URL(string: urlStr)!
+        
+    }
 }
 
 extension Game3ViewController: UICollectionViewDelegate, UICollectionViewDataSource{

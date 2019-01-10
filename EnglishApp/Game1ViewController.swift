@@ -209,7 +209,8 @@ class Game1ViewController: UIViewController {
     }
     
     func playAudio(str: String){
-        player = AVPlayer(url: convertStringToURL(str: str))
+        let firstString = str.split(separator: " ")
+        player = AVPlayer(url: convertStringToURL(str: String(firstString[0])))
         player.play()
     }
     
