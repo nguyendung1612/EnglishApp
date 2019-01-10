@@ -19,6 +19,7 @@ class Game3ViewController: UIViewController {
     @IBOutlet weak var lblWrong: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    
     var lessionName: String = ""
     var wordgame = [Word]()
     var player:AVPlayer!
@@ -31,13 +32,17 @@ class Game3ViewController: UIViewController {
     var ques = 0 //random cau hoi
     var waiter = 5 //cho hien ket qua
     var timer = Timer()
-    
+    var modeBtnKiemTra = 0
+    @IBAction func btnAudio(_ sender: UIButton) {
+        playAudio(str: wordgame[ques].english)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         observeWords()
         view.addVerticalGradientLayer(topColor: primaryColor, bottomColor: secondaryColor)
         ques = Int.random(in: 0 ... 11)
-        // Do any additional setup after loading the view.
+//         Do any additional setup after loading the view.
     }
     func observeWords(){
         let lessonRef = Database.database().reference().child("Lessons/\(lessionName)")
@@ -59,21 +64,27 @@ class Game3ViewController: UIViewController {
         
     }
     func randomQues(){
-        var i = 0
-        print(wordgame.count)
+        ques = Int.random(in: 0 ... 11)
+        english.removeAll()
         playAudio(str: wordgame[ques].english)
+        var pos = 0
         for char in wordgame[ques].english{
-            english.append(String(char))
+            pos = Int.random(in: 0...english.count)
+            english.insert(String(char), at: pos)
         }
         temp = english
+        lblEnglish.text = ""
+        lblAnswer.text = ""
+        collectionView.reloadData()
     }
     
     
     func nextQues(){
         countQues += 1
-        ques = Int.random(in: 0 ... 11)
+        temp.removeAll()
+        ans.removeAll()
+        
         randomQues()
-        collectionView.reloadData()
     }
     
     func wrongAns(){
@@ -138,6 +149,8 @@ class Game3ViewController: UIViewController {
                     isFalse = 2
                     lblWrong.text = String(isFalse)
                     run()
+                    collectionView.reloadData()
+
                 }
                 else{
                     isFalse -= 1
@@ -151,6 +164,7 @@ class Game3ViewController: UIViewController {
                     isFalse = 2
                     lblWrong.text = String(isFalse)
                     run()
+                    collectionView.reloadData()
                 }
                 else{
                     isFalse = 2
@@ -159,6 +173,8 @@ class Game3ViewController: UIViewController {
                     lblAnswer.text = wordgame[ques].english
                     stopWaitDown()
                     run()
+                    collectionView.reloadData()
+
                 }
             }
         }
@@ -167,9 +183,6 @@ class Game3ViewController: UIViewController {
     
     @IBAction func actionBack(_ sender: UIButton) {
         self.dismiss(animated: false, completion: nil)
-    }
-    
-    @IBAction func actionSpeak(_ sender: UIButton) {
     }
     
     /*
@@ -214,6 +227,23 @@ class Game3ViewController: UIViewController {
         return URL(string: urlStr)!
         
     }
+    @IBAction func btnKiemTra(_ sender: UIButton) {
+        if modeBtnKiemTra == 0 {
+            print("ans: \(ans), word: \(wordgame[ques].english), mean: \(wordgame[ques].mean)")
+            if ans == wordgame[ques].english { // tra loi dung
+                lblAnswer.text = wordgame[ques].mean
+                score += 10
+                lblScore.text = String(score)
+            }
+            sender.setTitle("Next", for: .normal)
+            modeBtnKiemTra = 1
+        }
+        else{
+            nextQues()
+            modeBtnKiemTra = 0
+            sender.setTitle("Kiểm tra", for: .normal)
+        }
+    }
 }
 
 extension Game3ViewController: UICollectionViewDelegate, UICollectionViewDataSource{
@@ -222,17 +252,17 @@ extension Game3ViewController: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellID", for: indexPath) as! WordCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "wordCell", for: indexPath) as! WordCollectionViewCell
         cell.lblWord.text = temp[indexPath.row]
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //collectionView.cellForItem(at: indexPath)?.isHidden = true
-        ans += temp[indexPath.row]
+//        collectionView.cellForItem(at: indexPath)?.isHidden = true
+        ans.append(temp[indexPath.row])
         temp.remove(at: indexPath.row)
         collectionView.deleteItems(at: [indexPath])
         lblEnglish.text = ans
-        testAns()
     }
+   
 }
